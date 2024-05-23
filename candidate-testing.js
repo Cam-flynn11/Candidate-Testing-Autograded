@@ -35,14 +35,12 @@ function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
   for(let index = 0; index < questions.length; index++) {
     candidateAnswers.push(input.question(questions[index]));
-      
-      // for(let indexj = 0; indexj < questions.length; indexj++) {
-        // candidateAnswers.push(input.question(questions[index][indexj]));
-        
+       
+    
         
   }
 }
-  // }
+  
 
 
 function gradeQuiz(candidateAnswers) {
@@ -57,7 +55,7 @@ function gradeQuiz(candidateAnswers) {
   }
 }
 
-  // console.log(`You answered ${candidateAnswers}, the correct answers are ${correctAnswers}`);
+  
   
   let grade; 
  //TODO 3.2 use this variable to calculate the candidates score.
