@@ -21,7 +21,6 @@ let questions = [
 ];
 let correctAnswers = ["Sally Ride", "true", '40', "Trajectory", '3'];
 let candidateAnswers = [];
-let numCorrect = 0;
 let numOfQuestions = 5;
 
 
@@ -45,18 +44,19 @@ function askQuestion() {
 
 
 function gradeQuiz(candidateAnswers) {
-  // added 'correct answers to function, may need ot take out
+
+
+
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly //   
   for (let index = 0; index < questions.length; index++) {
+
     if (candidateAnswers[index].toLowerCase() === correctAnswers[index].toLowerCase()) {
-      numCorrect++;
       console.log("----------------------");
-      console.log(`${questions[index]}\n${candidateAnswers[index]} is correct!`);
-      // changed line 55 from `${questions[index]}\n${correctAnswers[index]} to current 
+      console.log('That is correct!');
     } else {
       console.log("--------------------");
-      console.log(`${questions[index]}\n${candidateAnswers[index]} is incorrect. The correct answer is ${correctAnswers[index]}`);
+      console.log(`${candidateAnswers[index]} is incorrect. The correct answer is ${correctAnswers[index]}`);
     }
   }
 
@@ -64,17 +64,29 @@ function gradeQuiz(candidateAnswers) {
 
 
   //TODO 3.2 use this variable to calculate the candidates score.
-  let grade = (numCorrect) / (numOfQuestions) * 100;
-  // seperated parts with ()
-  if (grade >= 80) {
-    console.log("--------------------");
-    console.log(`Wow, you are so smart! You got ${grade}% (${numCorrect} out of ${numOfQuestions} correct) congrats, you passed!`);
-  } else {
-    console.log("--------------------");
-    console.log(`Sorry, ${grade}% (${numCorrect} out of ${numOfQuestions} correct) is not passing. YOU FAILED - please try again.`);
+  let grade = Number('');
+  let numCorrect = 0;
+  for (let index = 0; index < candidateAnswers.length; index++) {
+    if (candidateAnswers[index].toLowerCase() === correctAnswers[index].toLowerCase()) {
+      numCorrect++;
+    }
   }
-  return grade;
-}
+
+  for(let index = 0; index < candidateAnswers.length; index++) { 
+    grade = numCorrect / numOfQuestions * 100;
+  }
+    if (grade >= 80) {
+      console.log("--------------------");
+      console.log(`Wow, you are so smart! You scored: ${grade}%. Congrats, you passed!`);
+    } else {
+      console.log("--------------------");
+      console.log(`Sorry, ${grade}% is not passing. YOU FAILED - please try again.`);
+    }
+    return grade;
+  }
+
+
+
 
 
 function runProgram() {
@@ -83,7 +95,7 @@ function runProgram() {
   // TODO 1.1c: Greet candidate using their name //
   console.log("Hello, " + candidateName + "! Get ready for your quiz");
   askQuestion();
-  gradeQuiz(this.candidateAnswers);
+  gradeQuiz(this.candidateAnswers)
 }
 
 
